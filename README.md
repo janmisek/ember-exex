@@ -12,17 +12,32 @@
 
 
 # Exceptional Exceptions for Javascript
-When building advanced javascript application full featured error handling is required, unfortunatelly javascript does not provide it out of the box. Ever wantend used flavor of java exceptions in javascript? Here it is.
+When building advanced javascript application full featured error handling is required, unfortunately javascript does not provide it out of the box. Ever wanted used flavor of java exceptions in javascript? Here it is.
 
 ## Multiple exception classes with inheritance
 ```javascript
-var ApplicationError = defineError({name: 'ApplicationError', message: 'General application error'});
-var ServiceError = defineError({name: 'ServiceError', message: 'Service error', parent: ApplicationError});
-var UserInterfaceError = defineError({name: 'UserInterfaceError', message: 'Service error', parent: ApplicationError});
+
+const ApplicationError = defineError({
+        name: 'ApplicationError', 
+        message: 'General application error'
+      });
+
+const ServiceError = defineError({
+        name: 'ServiceError', 
+        message: 'Service error', 
+        extends: ApplicationError
+      });
+
+const UserInterfaceError = defineError({
+        name: 'UserInterfaceError', 
+        message: 'Service error', 
+        extends: ApplicationError
+      });
 
 try {
     throw new UserInterfaceError();
 } catch (e) {
+
     console.log(e instanceof UserInterfaceError); // true
     console.log(e instanceof ApplicationError); // true
     console.log(e instanceof Error); // true
@@ -30,35 +45,48 @@ try {
     
     if (e instanceof UserInterfaceError) {
         resolveUserInterfaceError(e);
-    }
-    else if (e instanceof ServiceError) {
+    } else if (e instanceof ServiceError) {
         resolveServiceError(e);
-    }
-    else if (e instanceof ApplicationError) {
+    } else if (e instanceof ApplicationError) {
         resolveGenericApplicationError(e);
-    }
-    else if (e instanceof Error) {
+    } else if (e instanceof Error) {
         resolveGenericError(e);
     }
 }
 ```
 
 ## Exception chaining
+
 ```javascript
-var DatabaseError = defineError({name: 'DatabaseError', message: 'Database error', parent: ApplicationError});
-var UserInterfaceError = defineError({name: 'UserInterfaceError', message: 'Service error', parent: ApplicationError});
+const DatabaseError = defineError({
+        name: 'DatabaseError', 
+        message: 'Database error', 
+        extends: ApplicationError
+      });
+      
+const UserInterfaceError = defineError({
+        name: 'UserInterfaceError', 
+        message: 'Service error', 
+        extends: ApplicationError
+      });
 
 try {
     throw new DatabaseError('There was error during loading data from database');
 } catch (e) {
     throw new UserInterfaceError('Cannot render user interface').withPreviousError(e);
+    
+    // stack trace includes also previous error
+    
 }
 ```
-@todo: example of stack trace here
 
 ## Parametrized exceptions
 ```javascript
-var DatabaseError = defineError({name: 'DatabaseError', message: 'There was error during loading data from table {dbtable} of database {db}'});
+
+const DatabaseError = defineError({
+        name: 'DatabaseError', 
+        message: 'There was error during loading data from table {dbtable} of database {db}'
+      });
 
 try {
     throw new DatabaseError({params: {db: 'myapp', dbtable: 'posts'}});
@@ -69,12 +97,11 @@ try {
 
 ## Extending exceptions
 ```javascript
+
 var ServiceError = defineError({
         name: 'ServiceError', 
-        extend: {
-            resolve: function() {
-                GlobalExceptionManager.log(this);
-            }
+        resolve: function() {
+            GlobalExceptionManager.log(this);
         }
 });
 
@@ -90,13 +117,10 @@ try {
 ```
 
 ## Clever stacktraces and compatibility
-@todo: why we call exceptions as errors - js compat
-@todo: example of stack trace here  
-@todo: exaple of exception naming  
-@todo: compatibility  
+TODO
 
 ## Adapters for well known network error loggers
-@todo: sentry
+TODO
 
 
 
