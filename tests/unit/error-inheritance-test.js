@@ -49,14 +49,14 @@ test('Error should have proper name', function () {
 
   error = new NamedError();
 
-  equal(NamedError.name, 'NamedError');
+  equal(NamedError.prototype.name, 'NamedError');
   equal(error.name, 'NamedError');
 
   const NonameError = defineError();
 
   error = new NonameError();
 
-  equal(NonameError.name, 'CustomError');
+  equal(NonameError.prototype.name, 'CustomError');
   equal(error.name, 'CustomError');
 
 });

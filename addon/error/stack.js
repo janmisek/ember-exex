@@ -56,16 +56,30 @@ export var StackTraceRenderer = {
 
 };
 
-export var createStackProperty = function (error, stack, stackRemoval) {
+export var initializeStack = function(error) {
+  let stack = new Error(error.message).stack;
+  if (!stack) {
+    try {
+      throw new Error(error.message);
+    } catch (e) {
+      stack = e.stack;
+    }
+  }
+  return stack;
+};
 
-  var parsed;
+
+export var createStackProperty = function (error, stackRemoval) {
+
+  stackRemoval = (typeof stackRemoval === 'undefined') ? 4 : stackRemoval;
+  var parsed, stack = initializeStack(error);
 
   var parse = function () {
     if (!parsed) {
       try {
         parsed = StackTraceParser.parse(error, stack);
       } catch (e) {
-        console.error(e);
+        console.error(e.stack);
         // pass
       }
     }

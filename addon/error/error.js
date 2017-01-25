@@ -60,7 +60,7 @@ var defineError = function (definition) {
     this.withPreviousError(options.previous);
 
     // create stack property
-    createStackProperty(this, new Error(this.message).stack, definition.stackRemoval || 2);
+    createStackProperty(this, definition.stackRemoval);
   };
 
   // define error prototype

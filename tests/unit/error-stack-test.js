@@ -7,13 +7,16 @@ module('error - stack ', {});
 
 test('Error stack should have error code extracted from stack', function () {
 
+
   const TestError = defineError({name: 'TestError'});
   const error = new TestError();
 
   const stack = error.stack;
+
   const found = stack
     .split('\n')
-    .find(r => r.match(/defaultErrorConstructor/i));
+    .find((r,i) => (r.match(/TestError/i) || r.match(/ErrorConstructor/i)) && i !== 0);
+
 
   ok(!found);
 
@@ -27,6 +30,7 @@ test('Error stack should have previous error included', function () {
   const error = new TopError().withPreviousError(new PreviousError());
 
   const stack = error.stack;
+
   let found;
 
   found = stack
