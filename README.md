@@ -9,7 +9,7 @@
 
 
 
-# Exceptional Exceptions for ambitious Ember applications
+# Ember-exex: Exceptional Exceptions for ambitious Ember applications
 When building advanced javascript application full featured error handling is required, unfortunately javascript does not provide it out of the box. Ever wanted used flavor of java exceptions in javascript? Here it is.
 
 ## Multiple exception classes with inheritance
