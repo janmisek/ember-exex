@@ -1,5 +1,5 @@
 import {test} from 'ember-qunit';
-import {defineError, BaseError} from 'exex-js/error/error';
+import {defineError, BaseError} from 'ember-exex/error';
 /* global module, ok, deepEqual, throws, equal */
 
 module('error - inheritance ', {});

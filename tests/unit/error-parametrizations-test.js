@@ -1,5 +1,5 @@
 import {test} from 'ember-qunit';
-import {defineError} from 'exex-js/error/error';
+import {defineError} from 'ember-exex/error';
 /* global module, ok, deepEqual, throws, equal */
 
 module('error - parametrizations ', {});

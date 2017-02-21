@@ -1,21 +1,21 @@
 ```
-  ______          ______                _       
- |  ____|        |  ____|              (_)      
- | |__    __  __ | |__    __  __        _   ___ 
- |  __|   \ \/ / |  __|   \ \/ /       | | / __|
- | |____   >  <  | |____   >  <   _    | | \__ \
- |______| /_/\_\ |______| /_/\_\ (_)   | | |___/
-                                      _/ |      
-                                     |__/       
+  _____           _                                       
+ | ____|_ __ ___ | |__   ___ _ __       _____  _______  __
+ |  _| | '_ ` _ \| '_ \ / _ \ '__|____ / _ \ \/ / _ \ \/ /
+ | |___| | | | | | |_) |  __/ | |_____|  __/>  <  __/>  < 
+ |_____|_| |_| |_|_.__/ \___|_|        \___/_/\_\___/_/\_\
+                                                               
 ```
 
 
 
-# Exceptional Exceptions for Javascript
+# Exceptional Exceptions for ambitious Ember applications
 When building advanced javascript application full featured error handling is required, unfortunately javascript does not provide it out of the box. Ever wanted used flavor of java exceptions in javascript? Here it is.
 
 ## Multiple exception classes with inheritance
 ```javascript
+
+import {defineError} from 'ember-exex/error';
 
 const ApplicationError = defineError({
         name: 'ApplicationError', 
@@ -58,6 +58,9 @@ try {
 ## Exception chaining
 
 ```javascript
+
+import {defineError} from 'ember-exex/error';
+
 const DatabaseError = defineError({
         name: 'DatabaseError', 
         message: 'Database error', 
@@ -83,6 +86,8 @@ try {
 ## Parametrized exceptions
 ```javascript
 
+import {defineError} from 'ember-exex/error';
+
 const DatabaseError = defineError({
         name: 'DatabaseError', 
         message: 'There was error during loading data from table {dbtable} of database {db}'
@@ -97,6 +102,8 @@ try {
 
 ## Extending exceptions
 ```javascript
+
+import {defineError} from 'ember-exex/error';
 
 var ServiceError = defineError({
         name: 'ServiceError', 

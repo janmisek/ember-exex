@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'exex-js'
+  name: 'ember-exex'
 };
