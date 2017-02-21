@@ -40,7 +40,7 @@ var defineError = function (definition) {
 
     // check whether called as constructor
     if (!ErrorConstructor.prototype.isPrototypeOf(this)) {
-      throw new Error(`${name}() must be called as constructor e.g 'new ${name}()'`);
+      throw new Error(`${definition.name}() must be called as constructor e.g 'new ${definition.name}()'`);
     }
 
     // check whether there is message or object in params, optionally convert message to options object
