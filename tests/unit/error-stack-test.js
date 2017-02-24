@@ -14,8 +14,7 @@ test('Error stack should have error code extracted from stack', function () {
 
   const found = stack
     .split('\n')
-    .find((r,i) => (r.match(/TestError/i) || r.match(/ErrorConstructor/i)) && i !== 0);
-
+    .find((r,i) => (r.indexOf('ErrorConstructor') !== -1 && i > 0));
 
   ok(!found);
 
