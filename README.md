@@ -1,3 +1,8 @@
+# Ember-exex: Exceptional Exceptions for ambitious applications
+
+[![Build Status](https://travis-ci.org/janmisek/ember-exex.svg)](https://travis-ci.org/janmisek/ember-exex) 
+[![Ember Observer Score](http://emberobserver.com/badges/ember-exex.svg)](https://emberobserver.com/addons/ember-exex)
+
 ```
   _____           _                                       
  | ____|_ __ ___ | |__   ___ _ __       _____  _______  __
@@ -9,7 +14,6 @@
 
 
 
-# Ember-exex: Exceptional Exceptions for ambitious applications
 When building advanced javascript application full featured error handling is required, unfortunately javascript does not provide it out of the box. Ever wanted used flavor of java exceptions in javascript? Here it is.
 
 ## Console example
