@@ -3,8 +3,8 @@ module.exports = {
   "framework": "qunit",
   "test_page": "tests/index.html?hidepassed",
   "disable_watching": true,
-  "timeout": 540,
-  "parallel": 1,
+  "timeout": 1000,
+  "parallel": 2,
   "launchers":
   {
     "SL_Chrome_56": {
