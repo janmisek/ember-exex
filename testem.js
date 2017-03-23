@@ -47,7 +47,6 @@ module.exports = {
   "launch_in_ci": [
     "SL_Chrome_56",
     "SL_Firefox_52",
-    "SL_Safari_10",
     "SL_IE_11"
   ]
 };
