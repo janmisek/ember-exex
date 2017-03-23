@@ -6,7 +6,7 @@ import {createStackProperty} from './stack';
 //***********************************
 
 
-function BaseError(message = "Base error") {
+export function BaseError(message = "Base error") {
   this.name = "BaseError";
   this.message = message;
   this.stack = new Error().stack;
@@ -20,7 +20,7 @@ BaseError.prototype.superclass = Error;
 //***********************************
 
 
-var defineError = function (definition) {
+export var defineError = function (definition) {
 
 
   // default values
@@ -101,5 +101,3 @@ var defineError = function (definition) {
   return renameClass(ErrorConstructor, definition.name);
 };
 
-export var defineError;
-export var BaseError;

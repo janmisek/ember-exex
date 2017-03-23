@@ -12,15 +12,15 @@ if ((typeof QUnit) !== "undefined" && typeof(console) !== "undefined") {
     if (!details.result) {
 
       if (details.message && details.message.indexOf("\n    at") > -1) {
-        console.error(details.message);
+        console.error(details.message); // eslint-disable-line no-console
       }
 
       if (details.message instanceof Error) {
-        console.error(`Error in test: '${details.module}/${details.name}' `, details.message.message, details.message.stack);
+        console.error(`Error in test: '${details.module}/${details.name}' `, details.message.message, details.message.stack); // eslint-disable-line no-console
       }
 
       else if (details.source) {
-        console.error(`Error in test: '${details.module}/${details.name}' `, details.source);
+        console.error(`Error in test: '${details.module}/${details.name}' `, details.source); // eslint-disable-line no-console
       }
 
 

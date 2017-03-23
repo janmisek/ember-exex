@@ -1,10 +1,9 @@
-import {test} from 'ember-qunit';
-import {defineError, BaseError} from 'ember-exex/error';
-/* global module, ok, deepEqual, throws, equal */
+import {module, test} from 'ember-qunit';
+import {defineError} from 'ember-exex/error';
 
 module('error - stack ', {});
 
-test('Error stack should have error code extracted from stack', function () {
+test('Error stack should have error code extracted from stack', function (asserts) {
 
 
   const TestError = defineError({name: 'TestError'});
@@ -16,11 +15,11 @@ test('Error stack should have error code extracted from stack', function () {
     .split('\n')
     .find((r,i) => (r.indexOf('ErrorConstructor') !== -1 && i > 0));
 
-  ok(!found);
+  asserts.ok(!found);
 
 });
 
-test('Error stack should have previous error included', function () {
+test('Error stack should have previous error included', function (asserts) {
 
   const TopError = defineError({name: 'TopError', message: 'I am on top'});
   const PreviousError = defineError({name: 'PreviousError', message: 'I am on bottom'});
@@ -35,12 +34,12 @@ test('Error stack should have previous error included', function () {
     .split('\n')
     .find(r => r === 'TopError: I am on top');
 
-  ok(found);
+  asserts.ok(found);
 
   found = stack
     .split('\n')
     .find(r => r === 'Previous: PreviousError: I am on bottom');
 
-  ok(found);
+  asserts.ok(found);
 
 });

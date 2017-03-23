@@ -18,6 +18,9 @@ When building advanced javascript application full featured error handling is re
 
 ![alt tag](https://raw.githubusercontent.com/janmisek/ember-exex/master/github/error.png)
 
+## Browser Support
+[![Build Status](https://saucelabs.com/browser-matrix/janmisek.svg)](https://saucelabs.com/u/janmisek)
+
 ## Multiple exception classes with inheritance
 ```javascript
 

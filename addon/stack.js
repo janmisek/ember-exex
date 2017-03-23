@@ -79,7 +79,7 @@ export var createStackProperty = function (error, stackRemoval) {
       try {
         parsed = StackTraceParser.parse(error, stack);
       } catch (e) {
-        console.error(e.stack);
+        console.error(e.stack); // eslint-disable-line no-console
         // pass
       }
     }

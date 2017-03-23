@@ -1,10 +1,9 @@
-import {test} from 'ember-qunit';
+import {module, test} from 'ember-qunit';
 import {defineError, BaseError} from 'ember-exex/error';
-/* global module, ok, deepEqual, throws, equal */
 
 module('error - inheritance ', {});
 
-test('Error should be instanceof BaseError', function () {
+test('Error should be instanceof BaseError', function (asserts) {
 
   const TestError = defineError({
     name: 'TestError'
@@ -24,23 +23,23 @@ test('Error should be instanceof BaseError', function () {
   const error = new TestError();
   const berror1 = new BranchError1();
 
-  ok(error instanceof BaseError);
+  asserts.ok(error instanceof BaseError);
 
   // proper extension branching
-  ok(berror1 instanceof BaseError);
-  ok(berror1 instanceof TestError);
-  ok(berror1 instanceof BranchError1);
-  ok(!(berror1 instanceof BranchError2));
+  asserts.ok(berror1 instanceof BaseError);
+  asserts.ok(berror1 instanceof TestError);
+  asserts.ok(berror1 instanceof BranchError1);
+  asserts.ok(!(berror1 instanceof BranchError2));
 
-  equal(error.constructor, TestError);
-  equal(error.superclass, BaseError);
+  asserts.equal(error.constructor, TestError);
+  asserts.equal(error.superclass, BaseError);
 
-  equal(berror1.constructor, BranchError1);
-  equal(berror1.superclass, TestError);
+  asserts.equal(berror1.constructor, BranchError1);
+  asserts.equal(berror1.superclass, TestError);
 
 });
 
-test('Error should have proper name', function () {
+test('Error should have proper name', function (asserts) {
   let error;
 
   const NamedError = defineError({
@@ -49,15 +48,15 @@ test('Error should have proper name', function () {
 
   error = new NamedError();
 
-  equal(NamedError.prototype.name, 'NamedError');
-  equal(error.name, 'NamedError');
+  asserts.equal(NamedError.prototype.name, 'NamedError');
+  asserts.equal(error.name, 'NamedError');
 
   const NonameError = defineError();
 
   error = new NonameError();
 
-  equal(NonameError.prototype.name, 'CustomError');
-  equal(error.name, 'CustomError');
+  asserts.equal(NonameError.prototype.name, 'CustomError');
+  asserts.equal(error.name, 'CustomError');
 
 });
 
