@@ -4,7 +4,7 @@ module.exports = {
   "test_page": "tests/index.html?hidepassed",
   "disable_watching": true,
   "timeout": 1000,
-  "parallel": 2,
+  "parallel": 1,
   "launchers":
   {
     "SL_Chrome_56": {
@@ -46,12 +46,8 @@ module.exports = {
   ],
   "launch_in_ci": [
     "SL_Chrome_56",
-    "SL_Chrome_50",
-    "SL_Firefox_46",
     "SL_Firefox_52",
-    "SL_Safari_9",
     "SL_Safari_10",
-    "SL_IE_11",
-    "SL_IE_10"
+    "SL_IE_11"
   ]
-}
+};
