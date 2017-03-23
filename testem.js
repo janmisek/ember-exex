@@ -3,7 +3,7 @@ module.exports = {
   "framework": "qunit",
   "test_page": "tests/index.html?hidepassed",
   "disable_watching": true,
-  "timeout": 1000,
+  "timeout": 540,
   "parallel": 1,
   "launchers":
   {
