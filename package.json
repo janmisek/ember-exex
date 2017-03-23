@@ -1,6 +1,6 @@
 {
   "name": "ember-exex",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Exceptional exceptions (errors) for ambitious Ember applications",
   "directories": {
     "doc": "doc",
