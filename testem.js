@@ -19,10 +19,6 @@ module.exports = {
       "command": "ember sauce:launch -b firefox -v 46 --no-ct -u <url>",
       "protocol": "tap"
     },
-    "SL_Firefox_52": {
-      "command": "ember sauce:launch -b firefox -v 52 --no-ct -u <url>",
-      "protocol": "tap"
-    },
     "SL_Safari_10": {
       "command": "ember sauce:launch -b safari -v 10 --no-ct -u <url>",
       "protocol": "tap"
@@ -46,7 +42,7 @@ module.exports = {
   ],
   "launch_in_ci": [
     "SL_Chrome_56",
-    "SL_Firefox_52",
+    "SL_Firefox_46",
     "SL_IE_11"
   ]
 };
