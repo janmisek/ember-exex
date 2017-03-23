@@ -38,10 +38,6 @@ module.exports = {
     "SL_IE_10": {
       "command": "ember sauce:launch -b 'internet explorer' -v 10 --no-ct -u <url>",
       "protocol": "tap"
-    },
-    "SL_IE_9": {
-      "command": "ember sauce:launch -b 'internet explorer' -v 9 --no-ct -u <url>",
-      "protocol": "tap"
     }
   }
   ,
@@ -56,7 +52,6 @@ module.exports = {
     "SL_Safari_Current",
     "SL_Safari_Last",
     "SL_IE_11",
-    "SL_IE_10",
-    "SL_IE_9"
+    "SL_IE_10"
   ]
 }
