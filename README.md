@@ -16,7 +16,7 @@
 
 When building advanced javascript application full featured error handling is required, but unfortunately it is not provided in javascript out of the box. Taste flavor of Java like exceptions in javascript:
 - Custom error classes
-- wrap and re-throwing of an error, providing with additional context and wrapped error
+- Re-throwing of an error with additional context and original error
 - Additonal tooling
 
 ## Console example
