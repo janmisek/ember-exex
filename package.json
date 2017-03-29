@@ -1,6 +1,6 @@
 {
   "name": "ember-exex",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "Exceptional Exceptions: Customizable error classes and error re-throwing with original error included",
   "directories": {
     "doc": "doc",
@@ -45,9 +45,18 @@
     "ember-cli-babel": "^5.1.6"
   },
   "keywords": [
-    "ember-addon", "ember", "exceptional","error", "errors",
-    "exception", "exceptions", "rethrow", "try", "catch",
-    "composite", "context"
+    "ember-addon",
+    "ember",
+    "exceptional",
+    "error",
+    "errors",
+    "exception",
+    "exceptions",
+    "rethrow",
+    "try",
+    "catch",
+    "composite",
+    "context"
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
