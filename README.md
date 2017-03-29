@@ -8,6 +8,8 @@
  |_____|_| |_| |_|_.__/ \___|_|        \___/_/\_\___/_/\_\
                                                                
 ```
+Ember Exceptional Exceptions: Customizable error classes and error re-throwing with original error included
+
 
 [![Build Status](https://travis-ci.org/janmisek/ember-exex.svg)](https://travis-ci.org/janmisek/ember-exex) 
 [![Ember Observer Score](http://emberobserver.com/badges/ember-exex.svg)](https://emberobserver.com/addons/ember-exex)
@@ -29,7 +31,6 @@ When building advanced javascript application full featured error handling is re
 ## Install
 ```
 ember install ember-exex
-
 ```
 
 ## Multiple error classes with inheritance
