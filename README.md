@@ -11,6 +11,7 @@
 
 [![Build Status](https://travis-ci.org/janmisek/ember-exex.svg)](https://travis-ci.org/janmisek/ember-exex) 
 [![Ember Observer Score](http://emberobserver.com/badges/ember-exex.svg)](https://emberobserver.com/addons/ember-exex)
+[![npm version](https://badge.fury.io/js/ember-exex.svg)](https://badge.fury.io/js/ember-exex)
 
 ## Why ember exex
 
