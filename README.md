@@ -12,36 +12,47 @@
 [![Build Status](https://travis-ci.org/janmisek/ember-exex.svg)](https://travis-ci.org/janmisek/ember-exex) 
 [![Ember Observer Score](http://emberobserver.com/badges/ember-exex.svg)](https://emberobserver.com/addons/ember-exex)
 
-When building advanced javascript application full featured error handling is required, unfortunately javascript does not provide it out of the box. Ever wanted used flavor of java exceptions in javascript? Here it is.
+## Why ember exex
+
+When building advanced javascript application full featured error handling is required, but unfortunately it is not provided in javascript out of the box. Taste flavor of Java like exceptions in javascript:
+- Custom error classes
+- wrap and re-throwing of an error, providing with additional context and wrapped error
+- Additonal tooling
 
 ## Console example
 
 ![alt tag](https://raw.githubusercontent.com/janmisek/ember-exex/master/github/error.png)
 
-## Browser Support
+## Compatiblity
 [![Build Status](https://saucelabs.com/browser-matrix/janmisek.svg)](https://saucelabs.com/u/janmisek)
 
-## Multiple exception classes with inheritance
+## Install
+```
+ember install ember-exex
+
+```
+
+## Multiple error classes with inheritance
 ```javascript
 
 import {defineError} from 'ember-exex/error';
 
 const ApplicationError = defineError({
-        name: 'ApplicationError', 
-        message: 'General application error'
-      });
+    name: 'ApplicationError', 
+    message: 'General application error'
+});
 
 const ServiceError = defineError({
-        name: 'ServiceError', 
-        message: 'Service error', 
-        extends: ApplicationError
-      });
+    name: 'ServiceError', 
+    message: 'Service error', 
+    extends: ApplicationError
+});
 
 const UserInterfaceError = defineError({
-        name: 'UserInterfaceError', 
-        message: 'Service error', 
-        extends: ApplicationError
-      });
+    name: 'UserInterfaceError', 
+    message: 'Service error', 
+    extends: ApplicationError
+});
 
 try {
     throw new UserInterfaceError();
@@ -64,61 +75,62 @@ try {
 }
 ```
 
-## Exception chaining
+## Re-throwing error with wrapped catched error
 
 ```javascript
 
 import {defineError} from 'ember-exex/error';
 
 const DatabaseError = defineError({
-        name: 'DatabaseError', 
-        message: 'Database error', 
-        extends: ApplicationError
-      });
+    name: 'DatabaseError', 
+    message: 'Database error', 
+    extends: ApplicationError
+});
       
 const UserInterfaceError = defineError({
-        name: 'UserInterfaceError', 
-        message: 'Service error', 
-        extends: ApplicationError
-      });
+    name: 'UserInterfaceError', 
+    message: 'Service error', 
+    extends: ApplicationError
+});
 
 try {
-    throw new DatabaseError('There was error during loading data from database');
+    throw new DatabaseError('Database IO error')
 } catch (e) {
-    throw new UserInterfaceError('Cannot render user interface').withPreviousError(e);
-    
-    // stack trace includes also previous error
-    
+    throw new UserInterfaceError('Cannot render user interface')
+        .withPreviousError(e);
 }
 ```
 
-## Parametrized exceptions
+Wrapped error is included as string in `error.stack` and stored as property on wrapping error `error.previous`
+
+
+## Parametrized error messages
 ```javascript
 
 import {defineError} from 'ember-exex/error';
 
 const DatabaseError = defineError({
-        name: 'DatabaseError', 
-        message: 'There was error during loading data from table {dbtable} of database {db}'
-      });
+    name: 'DatabaseError', 
+    message: "Database IO error at table '{table}' in '{db}'"
+});
 
 try {
-    throw new DatabaseError({params: {db: 'myapp', dbtable: 'posts'}});
+    throw new DatabaseError({params: {db: 'mydb', table: 'posts'}});
 } catch (e) {
-    console.log(e.message); // There was error during loading data from table posts of database myapp
+    console.log(e.message); // Database IO error at 'posts' in 'mydb'
 }
 ```
 
-## Extending exceptions
+## Extending errors
 ```javascript
 
 import {defineError} from 'ember-exex/error';
 
-var ServiceError = defineError({
-        name: 'ServiceError', 
-        resolve: function() {
-            GlobalExceptionManager.log(this);
-        }
+const ServiceError = defineError({
+     name: 'ServiceError', 
+     resolve: function() {
+         GlobalExceptionManager.log(this);
+     }
 });
 
 try {
@@ -131,12 +143,6 @@ try {
     }
 }
 ```
-
-## Clever stacktraces and compatibility
-TODO
-
-## Adapters for well known network error loggers
-TODO
 
 
 
