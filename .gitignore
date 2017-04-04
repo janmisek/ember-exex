@@ -1,7 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-# Env
+# Env + ide
 virtualenv
+ember-exex.iml
 
 # IDE
 .idea
