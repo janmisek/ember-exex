@@ -1,5 +1,5 @@
-export var StackTraceParser = {
-  parse: function (error, stack) {
+export const DefaulStackTraceParser = {
+  parse(error, stack) {
     stack = stack.split("\n");
     stack.shift();
 
@@ -15,25 +15,25 @@ export var StackTraceParser = {
 };
 
 
-export var StackTraceRenderer = {
+export const DefaultStackTraceRenderer = {
 
-  renderPrevious: function (error) {
+  renderPrevious(error) {
     if (error) {
       let stack;
-      if (error.stack) {
+      if (error.exex) {
         stack = error.stack;
-      } else if (error.name || error.message) {
-        stack = (error.name || 'Error') + (error.message ? ': ' + error.message : '');
       } else {
-        stack = error.toString();
+        const frames = Platform.parser.parse(error, error.stack);
+        stack = this.render(error, frames);
       }
+
       return "\n\nPrevious: " + stack;
     } else {
       return '';
     }
   },
 
-  render: function (error, frames, stackRemoval) {
+  render (error, frames, stackRemoval) {
     frames = frames.slice();
 
     // slice first frames, depends on stack removal
@@ -56,7 +56,13 @@ export var StackTraceRenderer = {
 
 };
 
-export var initializeStack = function(error) {
+export const Platform = {
+  parser: DefaulStackTraceParser,
+  renderer: DefaultStackTraceRenderer
+};
+
+
+export var initializeStack = function (error) {
   let stack = new Error(error.message).stack;
   if (!stack) {
     try {
@@ -77,7 +83,7 @@ export var createStackProperty = function (error, stackRemoval) {
   var parse = function () {
     if (!parsed) {
       try {
-        parsed = StackTraceParser.parse(error, stack);
+        parsed = Platform.parser.parse(error, stack);
       } catch (e) {
         console.error(e.stack); // eslint-disable-line no-console
         // pass
@@ -93,7 +99,7 @@ export var createStackProperty = function (error, stackRemoval) {
       return stack;
     }
 
-    return StackTraceRenderer.render(error, parsed, stackRemoval);
+    return Platform.renderer.render(error, parsed, stackRemoval);
   };
 
   Object.defineProperty(error, "frames", {

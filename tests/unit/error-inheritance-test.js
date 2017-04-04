@@ -39,7 +39,7 @@ test('Error should be instanceof BaseError', function (asserts) {
 
 });
 
-test('Error should have proper name', function (asserts) {
+test('Error should have proper name and attributes', function (asserts) {
   let error;
 
   const NamedError = defineError({
@@ -50,6 +50,7 @@ test('Error should have proper name', function (asserts) {
 
   asserts.equal(NamedError.prototype.name, 'NamedError');
   asserts.equal(error.name, 'NamedError');
+  asserts.equal(error.exex, true);
 
   const NonameError = defineError();
 
@@ -57,6 +58,7 @@ test('Error should have proper name', function (asserts) {
 
   asserts.equal(NonameError.prototype.name, 'CustomError');
   asserts.equal(error.name, 'CustomError');
+  asserts.equal(error.exex, true);
 
 });
 

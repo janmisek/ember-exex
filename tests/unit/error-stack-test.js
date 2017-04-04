@@ -13,7 +13,7 @@ test('Error stack should have error code extracted from stack', function (assert
 
   const found = stack
     .split('\n')
-    .find((r,i) => (r.indexOf('ErrorConstructor') !== -1 && i > 0));
+    .find((r, i) => (r.indexOf('ErrorConstructor') !== -1 && i > 0));
 
   asserts.ok(!found);
 
@@ -39,6 +39,35 @@ test('Error stack should have previous error included', function (asserts) {
   found = stack
     .split('\n')
     .find(r => r === 'Previous: PreviousError: I am on bottom');
+
+  asserts.ok(found);
+
+});
+
+test('Error stack of previous error is formatted properly', function (asserts) {
+
+  const TopError = defineError({name: 'TopError', message: 'I am on top'});
+  const objectAsError = {
+    stack: "Error \n    This is my stack line",
+    message: 'This is my message',
+    name: 'Error'
+  };
+
+  const error = new TopError().withPreviousError(objectAsError);
+
+  const stack = error.stack;
+
+  let found;
+
+  found = stack
+    .split('\n')
+    .find(r => r.trim() === 'Previous: Error: This is my message');
+
+  asserts.ok(found);
+
+  found = stack
+    .split('\n')
+    .find(r => r.trim() === 'This is my stack line');
 
   asserts.ok(found);
 

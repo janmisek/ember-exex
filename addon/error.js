@@ -59,6 +59,9 @@ export var defineError = function (definition) {
     this.code = options.code || this.code;
     this.withPreviousError(options.previous);
 
+    // mark as exex error
+    this.exex = true;
+
     // create stack property
     createStackProperty(this, definition.stackRemoval);
   };
