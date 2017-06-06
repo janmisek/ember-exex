@@ -1,5 +1,6 @@
 export const DefaulStackTraceParser = {
   parse(error, stack) {
+    stack = stack || '';
     stack = stack.split("\n");
     stack.shift();
 
@@ -45,7 +46,7 @@ export const DefaultStackTraceRenderer = {
 
     let stack = [];
 
-    stack.push((error.name || 'Error') + (error.message ? ': ' + error.message : ''));
+    stack.push((error.name || String(error)) + (error.message ? ': ' + error.message : ''));
     stack = stack.concat(typeof frames.map === 'function' ? frames.map(f => f.source) : ['  at ?']);
     stack = stack.join("\n");
 
