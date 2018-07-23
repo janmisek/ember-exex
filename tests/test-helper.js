@@ -1,8 +1,6 @@
 import resolver from './helpers/resolver';
-
-import {
-  setResolver
-} from 'ember-qunit';
+import { setResolver } from '@ember/test-helpers';
+import { start } from 'ember-cli-qunit';
 
 /* global QUnit */
 
@@ -42,3 +40,4 @@ if (!Array.prototype.find) {
 }
 
 setResolver(resolver);
+start();
